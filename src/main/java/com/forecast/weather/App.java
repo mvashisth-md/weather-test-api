@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -13,20 +14,28 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import lombok.extern.slf4j.Slf4j;
+
+
 /**
  * Hello world!
  *
  */
+@Slf4j
 @SpringBootApplication
 public class App implements CommandLineRunner{
+	static final int NUMBER_OF_DAYS=10;
+	private static final org.apache.logging.log4j.Logger log = 
+		    org.apache.logging.log4j.LogManager.getLogger(CommandLineRunner.class);
 	
-	public JSONObject API(String url) throws IOException, ParseException {
-		System.out.println(url);
+	public JSONObject getResponseFromAPI(String url) throws IOException, ParseException {
 	    URL urlForGetRequest = new URL(url);
 	    String readLine = null;
 	    HttpURLConnection conection = (HttpURLConnection) urlForGetRequest.openConnection();
 	    conection.setRequestMethod("GET");
-//	    conection.setRequestProperty("userId", "a1bcdef"); // set userId its a sample here
 	    int responseCode = conection.getResponseCode();
 	    if (responseCode == HttpURLConnection.HTTP_OK) {
 	        BufferedReader in = new BufferedReader(
@@ -35,11 +44,8 @@ public class App implements CommandLineRunner{
 	        while ((readLine = in .readLine()) != null) {
 	            response.append(readLine+"\n");
 	        } in .close();
-	        // print result
-//	        System.out.println("JSON String Result " + response.toString());
 	        JSONParser parser = new JSONParser();
 	        JSONObject obj = (JSONObject) parser.parse(response.toString());
-	        //GetAndPost.POSTRequest(response.toString());
 	        return obj;
 	    } else {
 	        return null;
@@ -48,37 +54,43 @@ public class App implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
-		try {
-			for(String i:args) {
-				System.out.println("value here:"+i);
+		try {			
+			if(args==null || args.length<2) {
+				log.error("Required parameters missing.");
+				return;
 			}
-			
-			JSONObject obj=API("https://api.weather.gov/points/"+args[0]+","+args[1]);
-//			String gridX=String.valueOf(((JSONObject)obj.get("properties")).get("gridX"));
-//			String gridY=String.valueOf(((JSONObject)obj.get("properties")).get("gridY"));
-//			String cwa=(String)((JSONObject)obj.get("properties")).get("cwa");
-			String forecast=String.valueOf(((JSONObject)obj.get("properties")).get("forecast"));
-			System.out.println("forecast:"+forecast);
+			JSONObject points=getResponseFromAPI("https://api.weather.gov/points/"+args[0]+","+args[1]);
+			if(points==null) {
+				log.error("Not a valid response from https://api.weather.gov/points/");
+				return;
+			}
+			String forecast=String.valueOf(((JSONObject)points.get("properties")).get("forecast"));
+			log.debug("forecast:"+forecast);
 
-//			JSONObject output=forecast.weatherAPI("https://api.weather.gov/gridpoints/"+cwa+"/"+gridX+","+gridY+"/forecast");
-			JSONObject output=API(forecast);
-//			System.out.println(output);
+			JSONObject output=getResponseFromAPI(forecast);
+			if(output==null) {
+				log.error("Not a valid response from https://api.weather.gov/gridpoints/");
+				return;
+			}
+			JSONArray arr=(JSONArray)((JSONObject)output.get("properties")).get("periods");
 			
-			String finalResponse=String.valueOf(((JSONObject)output.get("properties")).get("periods"));
-			System.out.println("finalResponse:"+finalResponse);
-			
+			StringBuilder buildResponse=new StringBuilder();
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			for(int i=0;i<NUMBER_OF_DAYS-1;i++) {
+				buildResponse.append(gson.toJson(arr.get(i)));
+			}
+			log.info(buildResponse);
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
     public static void main( String[] args )
     {
+    	log.info("Starting weather application.");
     	SpringApplication.run(App.class, args);
     }
 }

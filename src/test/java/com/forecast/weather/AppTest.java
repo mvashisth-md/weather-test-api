@@ -39,11 +39,10 @@ public class AppTest extends TestCase{
     {
     	App app=new App();
     	try {
-			JSONObject obj=app.API("https://api.weather.gov/points/39.7456,-97.0892");
+			JSONObject obj=app.getResponseFromAPI("https://api.weather.gov/points/39.7456,-97.0892");
 			String forecast=String.valueOf(((JSONObject)obj.get("properties")).get("forecast"));
-			JSONObject output=app.API(forecast);
+			JSONObject output=app.getResponseFromAPI(forecast);
 			JSONArray finalResponse=(JSONArray) ((JSONObject)output.get("properties")).get("periods");
-			System.out.println("size:"+finalResponse.size());
 			assertEquals( 14, finalResponse.size() );
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
