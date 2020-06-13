@@ -20,73 +20,131 @@ For example: https://api.weather.gov/gridpoints/TOP/31,80/forecast
 ```
 mvn spring-boot:run -Dspring-boot.run.arguments="39.7456,-97.0892"
 
-3. Application prints forcast for the next 5 days as following:
+3. Application prints forecast for next 5 days. An example response is as following:
 
 ```
 Response :
-
 ```json
 {
-  "customerId":"C1",
-  "monthlyRewards":{
-    "2020-03":590,
-    "2020-02":0
-  },
-  "totalRewards":590
+  "detailedForecast": "Sunny, with a high near 93. Southeast wind around 15 mph, with gusts as high as 30 mph.",
+  "shortForecast": "Sunny",
+  "icon": "https://api.weather.gov/icons/land/day/skc?size\u003dmedium",
+  "number": 1,
+  "temperatureUnit": "F",
+  "name": "This Afternoon",
+  "temperature": 93,
+  "startTime": "2020-06-13T14:00:00-05:00",
+  "isDaytime": true,
+  "endTime": "2020-06-13T18:00:00-05:00",
+  "windDirection": "SE",
+  "windSpeed": "15 mph"
+}{
+  "detailedForecast": "Mostly clear, with a low around 71. Southeast wind around 15 mph, with gusts as high as 25 mph.",
+  "shortForecast": "Mostly Clear",
+  "icon": "https://api.weather.gov/icons/land/night/few?size\u003dmedium",
+  "number": 2,
+  "temperatureUnit": "F",
+  "name": "Tonight",
+  "temperature": 71,
+  "startTime": "2020-06-13T18:00:00-05:00",
+  "isDaytime": false,
+  "endTime": "2020-06-14T06:00:00-05:00",
+  "windDirection": "SE",
+  "windSpeed": "15 mph"
+}{
+  "detailedForecast": "Sunny, with a high near 96. South wind 15 to 20 mph, with gusts as high as 30 mph.",
+  "shortForecast": "Sunny",
+  "icon": "https://api.weather.gov/icons/land/day/few?size\u003dmedium",
+  "number": 3,
+  "temperatureUnit": "F",
+  "name": "Sunday",
+  "temperature": 96,
+  "startTime": "2020-06-14T06:00:00-05:00",
+  "isDaytime": true,
+  "endTime": "2020-06-14T18:00:00-05:00",
+  "windDirection": "S",
+  "windSpeed": "15 to 20 mph"
+}{
+  "detailedForecast": "Mostly cloudy, with a low around 73. South wind around 15 mph, with gusts as high as 30 mph.",
+  "shortForecast": "Mostly Cloudy",
+  "icon": "https://api.weather.gov/icons/land/night/bkn?size\u003dmedium",
+  "number": 4,
+  "temperatureUnit": "F",
+  "name": "Sunday Night",
+  "temperature": 73,
+  "startTime": "2020-06-14T18:00:00-05:00",
+  "isDaytime": false,
+  "endTime": "2020-06-15T06:00:00-05:00",
+  "windDirection": "S",
+  "windSpeed": "15 mph"
+}{
+  "detailedForecast": "Mostly sunny, with a high near 96. South wind around 15 mph, with gusts as high as 30 mph.",
+  "shortForecast": "Mostly Sunny",
+  "icon": "https://api.weather.gov/icons/land/day/sct?size\u003dmedium",
+  "number": 5,
+  "temperatureUnit": "F",
+  "name": "Monday",
+  "temperature": 96,
+  "startTime": "2020-06-15T06:00:00-05:00",
+  "isDaytime": true,
+  "endTime": "2020-06-15T18:00:00-05:00",
+  "windDirection": "S",
+  "windSpeed": "15 mph"
+}{
+  "detailedForecast": "Partly cloudy, with a low around 73. South wind around 15 mph, with gusts as high as 25 mph.",
+  "shortForecast": "Partly Cloudy",
+  "icon": "https://api.weather.gov/icons/land/night/sct?size\u003dmedium",
+  "number": 6,
+  "temperatureUnit": "F",
+  "name": "Monday Night",
+  "temperature": 73,
+  "startTime": "2020-06-15T18:00:00-05:00",
+  "isDaytime": false,
+  "endTime": "2020-06-16T06:00:00-05:00",
+  "windDirection": "S",
+  "windSpeed": "15 mph"
+}{
+  "detailedForecast": "Mostly sunny, with a high near 97. South wind around 15 mph, with gusts as high as 30 mph.",
+  "shortForecast": "Mostly Sunny",
+  "icon": "https://api.weather.gov/icons/land/day/hot?size\u003dmedium",
+  "number": 7,
+  "temperatureUnit": "F",
+  "name": "Tuesday",
+  "temperature": 97,
+  "startTime": "2020-06-16T06:00:00-05:00",
+  "isDaytime": true,
+  "endTime": "2020-06-16T18:00:00-05:00",
+  "windDirection": "S",
+  "windSpeed": "15 mph"
+}{
+  "detailedForecast": "Partly cloudy, with a low around 74. South wind around 15 mph, with gusts as high as 30 mph.",
+  "shortForecast": "Partly Cloudy",
+  "icon": "https://api.weather.gov/icons/land/night/sct?size\u003dmedium",
+  "number": 8,
+  "temperatureUnit": "F",
+  "name": "Tuesday Night",
+  "temperature": 74,
+  "startTime": "2020-06-16T18:00:00-05:00",
+  "isDaytime": false,
+  "endTime": "2020-06-17T06:00:00-05:00",
+  "windDirection": "S",
+  "windSpeed": "15 mph"
+}{
+  "detailedForecast": "Mostly sunny, with a high near 97. South wind around 15 mph, with gusts as high as 30 mph.",
+  "shortForecast": "Mostly Sunny",
+  "icon": "https://api.weather.gov/icons/land/day/hot?size\u003dmedium",
+  "number": 9,
+  "temperatureUnit": "F",
+  "name": "Wednesday",
+  "temperature": 97,
+  "startTime": "2020-06-17T06:00:00-05:00",
+  "isDaytime": true,
+  "endTime": "2020-06-17T18:00:00-05:00",
+  "windDirection": "S",
+  "windSpeed": "15 mph"
 }
-
-```
-5. To get Rewards of all customers, use this api endpoint: 
-http://localhost:8080/rewards-api/customers/rewards
-```json
-[
-  {
-      "customerId":"C1",
-      "monthlyRewards":{
-      "2020-03":590,
-      "2020-02":0
-      },
-      "totalRewards":590
-   },
-   {
-      "customerId":"C2",
-      "monthlyRewards":{
-      "2020-04":30,
-      "2020-02":170
-      },
-      "totalRewards":200
-    },
-    
-    {
-      "customerId":"C3",
-      "monthlyRewards":{
-      "2020-04":440,
-      "2020-02":250
-      },
-      "totalRewards":690
-    },
-    
-    {
-      "customerId":"C4",
-      "monthlyRewards":{
-      "2020-04":130
-      },
-      "totalRewards":130
-    }
-]
-
-```
-6. To create/save more test data, use this POST api endpoint in Swagger: 
-http://localhost:8080/rewards-api/customers/{customerId}/transaction
-
-```json
-{
-  "amount": 150,
-  "transactionTs": "2020-04-19T10:20:30.678Z"
-}
-
 ```
 
 ## Technologies Used 
 
-Java 8, Spring Boot, H2 database, Gradle, Junit-5 and Mockito.
+Java 8, Spring Boot, Maven, Junit
