@@ -38,6 +38,10 @@ public class App implements CommandLineRunner{
 			}
 			
 			JSONArray arr=service.getWeatherResponse(args[0],args[1]);
+			if(arr==null) {
+				log.error("Unable to provide data for requested point.");
+				return;
+			}
 			StringBuilder buildResponse=new StringBuilder();
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			for(int i=0;i<NUMBER_OF_DAYS-1;i++) {

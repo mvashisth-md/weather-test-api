@@ -1,6 +1,6 @@
 # weather stand-alone application
 
-This application returns the weather forcast of next 5 days.
+This application returns the weather forecast of next 5 days.
 
 1) It retrieves points from the given latitude and longitude API using following API:
 https://api.weather.gov/points/{latitude},{longitude}
@@ -17,11 +17,11 @@ For example: https://api.weather.gov/gridpoints/TOP/31,80/forecast
 
 ```mvn clean install ```
 
-2. Run the Application Using Maven.
+2. Run the application Using Maven.
 
 ```mvn spring-boot:run -Dspring-boot.run.arguments="39.7456,-97.0892" ```
 
-3. Run the Application as stand-alone Java application.
+3. Run the application as stand-alone Java application.
  
 ``` java -jar target/weather-0.0.1-SNAPSHOT.jar ```
 
