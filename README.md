@@ -1,4 +1,4 @@
-# weather stand-alone application
+# Weather forecast
 
 This application returns the weather forecast of next 5 days.
 
