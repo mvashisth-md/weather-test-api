@@ -18,16 +18,18 @@ For example: https://api.weather.gov/gridpoints/TOP/31,80/forecast
 ```mvn clean install ```
 
 2. Run the Application Using Maven.
+
 ```mvn spring-boot:run -Dspring-boot.run.arguments="39.7456,-97.0892" ```
 
-3. Run the Application as stand-alone Java application. 
+3. Run the Application as stand-alone Java application.
+ 
 ``` java -jar target/weather-0.0.1-SNAPSHOT.jar ```
 
 4. Application prints forecast for next 5 days. An example response is as following:
 
 ```
 Response :
-```json
+
 {
   "detailedForecast": "Sunny, with a high near 93. Southeast wind around 15 mph, with gusts as high as 30 mph.",
   "shortForecast": "Sunny",
