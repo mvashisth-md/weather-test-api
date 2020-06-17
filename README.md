@@ -23,7 +23,7 @@ For example: https://api.weather.gov/gridpoints/TOP/31,80/forecast
 
 3. Run the application as stand-alone Java application.
  
-``` java -jar target/weather-0.0.1-SNAPSHOT.jar ```
+``` java -jar target/weather-0.0.1-SNAPSHOT.jar 39.7456 -97.0892```
 
 4. Application prints forecast for next 5 days. An example response is as following:
 
