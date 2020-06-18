@@ -3,6 +3,7 @@ package com.forecast.weather;
 import java.io.IOException;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,14 +13,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import lombok.extern.slf4j.Slf4j;
-
 
 /**
  * Hello world!
  *
  */
-@Slf4j
 @SpringBootApplication
 public class App implements CommandLineRunner{
 	private static final int NUMBER_OF_DAYS=10;
@@ -44,8 +42,8 @@ public class App implements CommandLineRunner{
 			}
 			StringBuilder buildResponse=new StringBuilder();
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
-			for(int i=0;i<NUMBER_OF_DAYS-1;i++) {
-				buildResponse.append(gson.toJson(arr.get(i)));
+			for(int i=0;i<NUMBER_OF_DAYS;i++) {	
+				buildResponse.append(gson.toJson((service.formatResponse((JSONObject)arr.get(i)))));
 			}
 			log.info("Response:{}",buildResponse);			
 		} catch (IOException e) {

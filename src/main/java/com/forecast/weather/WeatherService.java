@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -61,5 +63,24 @@ public class WeatherService {
 	        return null;
 	    }
 	}
+	
+	public JSONObject formatResponse(JSONObject input) {
+		Map<String,Object> temp=new HashMap<String,Object>();
+		temp.put("detailedForecast",input.get("detailedForecast"));
+		temp.put("shortForecast",input.get("shortForecast"));
+		temp.put("number",input.get("number"));
+		temp.put("temperatureUnit",input.get("temperatureUnit"));
+		temp.put("name",input.get("name"));
+		temp.put("temperature",input.get("temperature"));
+		temp.put("startTime",input.get("startTime"));
+		temp.put("isDaytime",input.get("isDaytime"));
+		temp.put("endTime",input.get("endTime"));
+		temp.put("windDirection",input.get("windDirection"));
+		temp.put("windSpeed",input.get("windSpeed"));
+		JSONObject response=new JSONObject(temp);
+		return response;
+	}
+	
+	
 
 }
